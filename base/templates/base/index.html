@@ -20,11 +20,19 @@
     </button>
   </div>
 </form>
-<div class="row">
+<div class="row mt-4">
   <div class="col">
-    <ul class="list-group">
+    <ul class="list-group ">
       {% for list in todo_list %}
-      <li class="list-group-item">{{list.text}}</li>
+      <div class="d-flex justify-content-between">
+      <li class="list-group-item border border-0">
+        {{list.text}}
+      </li>
+      <form method="POST" action="delete_todo/{{list.id}}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+      </form>
+    </div>
       {% endfor %}
     </ul>
   </div>
